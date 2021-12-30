@@ -1,5 +1,5 @@
 <?php
-include('init.php');
+include('functions/init.php');
 ?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
@@ -38,7 +38,7 @@ include('init.php');
 <body>
 
 	<!-- Start Header Area -->
-		<?php include('header.php'); ?>
+		<?php include('Header\Footer/header.php'); ?>
 
 	<!-- End Header Area -->
 
@@ -414,7 +414,7 @@ include('init.php');
 	
 
 	<!-- start footer Area -->
-	<?php include('footer.php'); ?>
+	<?php include('Header\Footer/footer.php'); ?>
 	<!-- End footer Area -->
 
 	<script src="js/vendor/jquery-2.2.4.min.js"></script>
