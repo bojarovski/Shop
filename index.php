@@ -154,7 +154,7 @@ include('functions/init.php');
 								<img class="img-fluid w-100" src="img/category/c1.jpg" alt="">
 								<a href="img/category/c1.jpg" class="img-pop-up" target="_blank">
 									<div class="deal-details">
-										<h6 class="deal-title">Sneaker for Sports</h6>
+										<h6 class="deal-title">Sneaker for Winter</h6>
 									</div>
 								</a>
 							</div>
@@ -184,10 +184,10 @@ include('functions/init.php');
 						<div class="col-lg-8 col-md-8">
 							<div class="single-deal">
 								<div class="overlay"></div>
-								<img class="img-fluid w-100" src="img/category/c4.jpg" alt="">
+								<img style="width:auto;height:200px;" class="img-fluid w-100" src="img/product/outdoor.jfif" alt="">
 								<a href="img/category/c4.jpg" class="img-pop-up" target="_blank">
 									<div class="deal-details">
-										<h6 class="deal-title">Sneaker for Sports</h6>
+										<h6 class="deal-title">Sneaker for OutDoor</h6>
 									</div>
 								</a>
 							</div>
@@ -197,10 +197,10 @@ include('functions/init.php');
 				<div class="col-lg-4 col-md-6">
 					<div class="single-deal">
 						<div class="overlay"></div>
-						<img class="img-fluid w-100" src="img/category/c5.jpg" alt="">
+						<img class="img-fluid w-100" src="img/product/accessories.jfif" alt="">
 						<a href="img/category/c5.jpg" class="img-pop-up" target="_blank">
 							<div class="deal-details">
-								<h6 class="deal-title">Sneaker for Sports</h6>
+								<h6 class="deal-title">accessories</h6>
 							</div>
 						</a>
 					</div>
@@ -225,17 +225,25 @@ include('functions/init.php');
 						</div>
 					</div>
 				</div>
+			
 				<div class="row">
-					<!-- Last single product -->
+
+				<?php
+					$query="SELECT * FROM sneakers ORDER BY SneakersId DESC LIMIT 10";
+                	$result=mysqli_query($conn,$query);
+                	while($row=mysqli_fetch_object($result)){
+						
+				?>
+				<!-- Last single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="img/product/p1.jpg" alt="">
+							<a href="single-product.php?SneakersId=<?php echo $row->SneakersId ?>">
+							<img class="img-fluid" src="<?php echo $row->Photo; ?>" alt="Photo">
+							</a>
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6><a href="single-product.php?SneakersId=<?php echo $row->SneakersId ?>"><?php echo $row->Name; ?></a></h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6><?php echo $row->Price; ?></h6>
 								</div>
 								<div class="prd-bottom">
 
@@ -252,8 +260,9 @@ include('functions/init.php');
 							</div>
 						</div>
 					</div>
-					
-					
+					<?php
+					}
+				?>
 				</div>
 			</div>
 		</div>
