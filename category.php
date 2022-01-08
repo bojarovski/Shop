@@ -64,17 +64,24 @@ include('functions/init.php');
         <div class="col-xl-3 col-lg-4 col-md-5">
           <div class="sidebar-categories">
             <div class="head">Browse Categories</div>
+
+            <?php
+					      $query="SELECT Name FROM category";
+                	$result=mysqli_query($conn,$query);
+                	while($row=mysqli_fetch_object($result)){
+				        ?>
+                
             <ul class="main-categories">
               <li class="main-nav-list">
                 <a
                   data-toggle="collapse"
-                  href="#fruitsVegetable"
+               
                   aria-expanded="false"
                   aria-controls="fruitsVegetable"
-                  ><span class="lnr lnr-arrow-right"></span>Fruits and
-                  Vegetables<span class="number">(53)</span></a
+                  href="category.php?categoryName=<?php echo $row->Name; ?>"
+                  ><span class="lnr lnr-arrow-right"></span><?php echo $row->Name?><span class="number"><?php   ?></span></a
                 >
-                <ul
+                <!-- <ul
                   class="collapse"
                   id="fruitsVegetable"
                   data-toggle="collapse"
@@ -98,14 +105,12 @@ include('functions/init.php');
                   <li class="main-nav-list child">
                     <a href="#">Meat<span class="number">(11)</span></a>
                   </li>
-                </ul>
+                </ul> -->
               </li>
-
-              
-              
-              
-              
-                </ul>
+            </ul>
+            <?php 
+            }
+            ?>
               </li>
             </ul>
           </div>
@@ -117,18 +122,21 @@ include('functions/init.php');
                 <ul>
                   
 				        <?php
-					      $query="SELECT DISTINCT Name FROM category";
+					      $query="SELECT DISTINCT Name FROM brand";
                 	$result=mysqli_query($conn,$query);
                 	while($row=mysqli_fetch_object($result)){
+                    
 						
 				        ?>
+                
                   <li class="filter-list">
                     <input
                       class="pixel-radio"
                       type="radio"
-                      id="apple"
+                      id="<?php echo $row->Name; ?>"
                       name="brand"
-                    /><label for="apple"><?php echo $row->Name ?><span>(29)</span></label>
+                      
+                    /><a href="category.php?brandName=<?php echo $row->Name; ?>" for="apple"><?php echo $row->Name ?><span>()</span></a>
                   </li>
                   <?php
 					        }

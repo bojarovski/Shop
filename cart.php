@@ -34,9 +34,9 @@
 
     <!-- Start Header Area -->
     <?php
-	include('Header\Footer/header.php');
-    ?>
-	<!-- End Header Area -->
+include 'Header\Footer/header.php';
+?>
+    <!-- End Header Area -->
 
     <!-- Start Banner Area -->
     <section class="banner-area organic-breadcrumb">
@@ -85,12 +85,16 @@
                                 </td>
                                 <td>
                                     <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                            class="input-text qty">
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                                        <input type="text" name="qty" id="sst" maxlength="12" value="1"
+                                            title="Quantity:" class="input-text qty">
+                                        <button
+                                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                            class="increase items-count" type="button"><i
+                                                class="lnr lnr-chevron-up"></i></button>
+                                        <button
+                                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                            class="reduced items-count" type="button"><i
+                                                class="lnr lnr-chevron-down"></i></button>
                                     </div>
                                 </td>
                                 <td>
@@ -113,12 +117,16 @@
                                 </td>
                                 <td>
                                     <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                            class="input-text qty">
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                                        <input type="text" name="qty" id="sst" maxlength="12" value="1"
+                                            title="Quantity:" class="input-text qty">
+                                        <button
+                                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                            class="increase items-count" type="button"><i
+                                                class="lnr lnr-chevron-up"></i></button>
+                                        <button
+                                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                            class="reduced items-count" type="button"><i
+                                                class="lnr lnr-chevron-down"></i></button>
                                     </div>
                                 </td>
                                 <td>
@@ -141,12 +149,16 @@
                                 </td>
                                 <td>
                                     <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                            class="input-text qty">
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                                        <input type="text" name="qty" id="sst" maxlength="12" value="1"
+                                            title="Quantity:" class="input-text qty">
+                                        <button
+                                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                            class="increase items-count" type="button"><i
+                                                class="lnr lnr-chevron-up"></i></button>
+                                        <button
+                                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                            class="reduced items-count" type="button"><i
+                                                class="lnr lnr-chevron-down"></i></button>
                                     </div>
                                 </td>
                                 <td>
@@ -245,25 +257,26 @@
     <!--================End Cart Area =================-->
 
     <!-- start footer Area -->
-        <?php
-	include('Header\Footer/footer.php');
-    ?>
+    <?php
+include 'Header\Footer/footer.php';
+?>
     <!-- End footer Area -->
 
     <script src="js/vendor/jquery-2.2.4.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-	 crossorigin="anonymous"></script>
-	<script src="js/vendor/bootstrap.min.js"></script>
-	<script src="js/jquery.ajaxchimp.min.js"></script>
-	<script src="js/jquery.nice-select.min.js"></script>
-	<script src="js/jquery.sticky.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
+    </script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
     <script src="js/nouislider.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<!--gmaps Js-->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-	<script src="js/gmaps.min.js"></script>
-	<script src="js/main.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="js/gmaps.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

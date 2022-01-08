@@ -1,3 +1,9 @@
+<?php
+
+include 'functions/init.php';
+	 
+?>
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -48,7 +54,7 @@ include 'Header\Footer/header.php';
             justify-content-end
           ">
                 <div class="col-first">
-                    <h1>Login</h1>
+                    <h1>Register</h1>
 
                 </div>
             </div>
@@ -69,22 +75,32 @@ include 'Header\Footer/header.php';
                                 There are advances being made in science and technology
                                 everyday, and a good example of this is the
                             </p>
-                            <a class="primary-btn" href="registration.php">Create an Account</a>
+                            <a class="primary-btn" href="login.php">Log In</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="login_form_inner">
-                        <h3>Log in to enter</h3>
-                        <form class="row login_form" action="actlogin.php" method="POST" id="contactForm"
+                        <h3>Register</h3>
+                        <form class="row login_form" action="#" method="POST" id="contactForm" name="registerForm"
                             novalidate="novalidate">
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="name" name="username" placeholder="Username"
                                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'" />
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="name" name="password" placeholder="Password"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" />
+                                <input type="email" class="form-control" id="name" name="email" placeholder="Email"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'email'" />
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input type="password" class="form-control" id="name" name="password"
+                                    placeholder="Password" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Password'" />
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input type="password" class="form-control" id="name" name="confirmPassword"
+                                    placeholder="Confirm Password" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Password'" />
                             </div>
                             <div class="col-md-12 form-group">
                                 <div class="creat_account">
@@ -93,11 +109,52 @@ include 'Header\Footer/header.php';
                                 </div>
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="submit" value="LOG IN" class="primary-btn" />
-
-                                <a href="#">Forgot Password?</a>
+                                <input type="submit" value="REGISTER" class="primary-btn" />
                             </div>
                         </form>
+                        <?php 
+                    if (isset($_POST['username'])){
+                        $username = $_POST['username'];
+                        $email = $_POST['email'];
+                        $password = $_POST['password'];
+                        $cpassword = $_POST['confirmPassword'];
+                        
+                        $query = "select ID from users where username='$username'";
+                        $query1 = "select ID from users where email='$email'";
+                        
+                        $result = mysqli_query($conn, $query);
+                        $result1 = mysqli_query($conn, $query1);
+                        
+                        $nr=mysqli_num_rows($result);
+                        $nr1=mysqli_num_rows($result1);
+                        if ($password == $cpassword && strlen($password) >= 8) {
+                            $epassword = md5($password);
+                            if (strlen($username) < 9 || $nr > 0) {
+                                echo strlen($username);
+                                echo "<div class='alert alert-danger' role='alert'>Username must be longer then 8 characters or this username is already exist</div>";
+                            } else {
+                                if ($nr1>0) {
+                                    echo "<div class='alert alert-danger' role='alert'>Email is already exist</div>";
+                                } else {
+                                    $date=date("Y-m-d");
+                                    echo $date;
+                                    $query = "INSERT INTO `users`(`ID`, `username`, `password`, `email`, `date`) VALUES (null,'$username','$epassword','$email','$date')";
+                                    echo "uspesno full";
+                                    echo isset($result);
+                                    mysqli_query($conn, $query);
+                                }
+                            }
+                        
+                        } else {
+                            ?>
+                        <div class="alert alert-danger" role="alert">Password must be longer then 8 characters or
+                            password doesnt match
+                        </div>
+                        <?php
+                        }
+                    }
+                    ?>
+
                     </div>
                 </div>
             </div>
@@ -123,7 +180,8 @@ include 'Header\Footer/footer.php';
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <!--gmaps Js-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE">
+    </script>
     <script src="js/gmaps.min.js"></script>
     <script src="js/main.js"></script>
 </body>
