@@ -133,7 +133,7 @@ include 'Header\Footer/header.php';
                                 echo strlen($username);
                                 echo "<div class='alert alert-danger' role='alert'>Username must be longer then 8 characters or this username is already exist</div>";
                             } else {
-                                if ($nr1>0) {
+                                if ($nr1>0 && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
                                     echo "<div class='alert alert-danger' role='alert'>Email is already exist</div>";
                                 } else {
                                     $date=date("Y-m-d");
@@ -142,6 +142,7 @@ include 'Header\Footer/header.php';
                                     echo "uspesno full";
                                     echo isset($result);
                                     mysqli_query($conn, $query);
+                                    header("location: login.php");
                                 }
                             }
                         
@@ -153,6 +154,7 @@ include 'Header\Footer/header.php';
                         <?php
                         }
                     }
+                    
                     ?>
 
                     </div>

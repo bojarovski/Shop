@@ -44,10 +44,7 @@ include 'Header\Footer/header.php';
             <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
                 <div class="col-first">
                     <h1>Shopping Cart</h1>
-                    <nav class="d-flex align-items-center">
-                        <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="category.html">Cart</a>
-                    </nav>
+
                 </div>
             </div>
         </div>
@@ -244,7 +241,7 @@ include 'Header\Footer/header.php';
                                 <td>
                                     <div class="checkout_btn_inner d-flex align-items-center">
                                         <a class="gray_btn" href="category.php">Continue Shopping</a>
-                                        <a class="primary-btn" href="confirmation.php">Proceed to checkout</a>
+                                        <a class="primary-btn" href="checkout.php">Proceed to checkout</a>
                                     </div>
                                 </td>
                             </tr>

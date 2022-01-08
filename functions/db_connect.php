@@ -6,7 +6,7 @@ $pass="";
 $db="shop";
 
 $conn=mysqli_connect($host,$user,$pass,$db);
-
+global $conn;
 if(!$conn)
 {
     echo "Error connecting with MySQL serever";

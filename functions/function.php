@@ -1,5 +1,11 @@
 <?php 
-	include 'db_connect.php';
+
+function redirect($location)
+{
+    header("location: {$location}");
+    exit();
+}
+
 		function last20 (){
 				$query="SELECT * FROM sneakers ORDER BY sneakersId DESC LIMIT 10";
                 $result=mysqli_query($conn,$query);

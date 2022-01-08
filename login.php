@@ -1,3 +1,8 @@
+<?php
+include 'functions/init.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -76,15 +81,15 @@ include 'Header\Footer/header.php';
                 <div class="col-lg-6">
                     <div class="login_form_inner">
                         <h3>Log in to enter</h3>
-                        <form class="row login_form" action="actlogin.php" method="POST" id="contactForm"
-                            novalidate="novalidate">
+                        <form class="row login_form" action="#" method="POST" id="contactForm" novalidate="novalidate">
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="name" name="username" placeholder="Username"
                                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'" />
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="name" name="password" placeholder="Password"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" />
+                                <input type="password" class="form-control" id="name" name="password"
+                                    placeholder="Password" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Password'" />
                             </div>
                             <div class="col-md-12 form-group">
                                 <div class="creat_account">
@@ -98,6 +103,31 @@ include 'Header\Footer/header.php';
                                 <a href="#">Forgot Password?</a>
                             </div>
                         </form>
+                        <?php
+                        if (isset($_POST['username'])){
+                        $username = $_POST['username'];
+                        $password = $_POST['password'];
+
+                        $epass=md5($password);
+
+                        $query="select * from users where username='$username' and password='$epass'";
+
+                        $result=mysqli_query($conn,$query);
+                                 
+                        if(mysqli_num_rows($result)==1)
+                        {
+                        $row=mysqli_fetch_array($result);
+                        $_SESSION['user']=$row['username'];
+                        
+                        }
+                        else
+                        {
+                        echo "<div class='alert alert-danger' role='alert'>Wrong username or password</div>";
+                         session_destroy();
+                        }
+                        }
+?>
+
                     </div>
                 </div>
             </div>

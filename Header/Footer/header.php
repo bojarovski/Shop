@@ -26,7 +26,25 @@
 	                            </ul>
 	                        </li>
 	                        <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
-	                        <li class="nav-item"><a class="nav-link" href="login.php">LOGIN</a></li>
+	                        <?php
+							if(!isset($_SESSION['user'])){
+								echo'<li class="nav-item"><a class="nav-link" href="login.php">LOGIN</a></li>';
+							}else{?>
+	                        <li class="nav-item submenu dropdown">
+	                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+	                                aria-haspopup="true" aria-expanded="false">Profile</a>
+	                            <ul class="dropdown-menu">
+	                                <li class="nav-item"><a class="nav-link" href="tracking.php">My Profile</a>
+	                                </li>
+	                                <li class="nav-item"><a class="nav-link" href="adminPage">Admin
+	                                        Page</a>
+	                                </li>
+	                                <li class="nav-item"><a class="nav-link" href="logout.php">Log Out</a></li>
+	                            </ul>
+	                        </li>
+	                        <?php }
+							?>
+
 	                    </ul>
 	                    <ul class="nav navbar-nav navbar-right">
 	                        <li class="nav-item"><a href="cart.php" class="cart"><span class="ti-bag"></span></a></li>
