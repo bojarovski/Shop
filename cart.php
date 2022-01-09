@@ -1,3 +1,6 @@
+<?php 
+include "functions/init.php";
+?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -28,6 +31,41 @@
     <link rel="stylesheet" href="css/nouislider.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript">
+    <?php
+    $productid=$_GET['productid'];
+    $query="select * from products where productid=$productid";
+    $result=mysqli_query($conn,$query);
+
+    $row=mysqli_fetch_object($result);
+    ?>
+
+    function updatePrice() {
+        qty = document.getElementById("quantity")
+        price = <?php echo $row->price."\n"; ?>
+        maxp = <?php echo $row->quantity."\n"; ?>
+        if (parseInt(qty.value) < maxp) {
+            sum = (parseInt(qty.value) + 1) * price
+            total = document.getElementById("total");
+            total.innerHTML = "Total " + sum + " Euro"
+        } else {
+            alert("No such quantity in stocks");
+            qty.value = maxp - 1
+        }
+    }
+
+    function updatemPrice() {
+        qty = document.getElementById("quantity")
+        price = <?php echo $row->price."\n"; ?>
+
+        if (parseInt(qty.value) > 1) {
+            sum = (parseInt(qty.value) - 1) * price
+        }
+
+        total = document.getElementById("total");
+        total.innerHTML = "Total " + sum + " Euro"
+    }
+    </script>
 </head>
 
 <body>
@@ -66,102 +104,46 @@ include 'Header\Footer/header.php';
                             </tr>
                         </thead>
                         <tbody>
+                            <?php
+                            $user=$_SESSION['user'];
+                        $query = "SELECT *
+                        FROM temporder
+                        INNER JOIN sneakers ON temporder.sneakerid=sneakers.SneakersId WHERE temporder.username='$user';";
+                        $result = mysqli_query($conn, $query);
+                        while ($row = mysqli_fetch_object($result)) {
+                        ?>
                             <tr>
                                 <td>
                                     <div class="media">
                                         <div class="d-flex">
-                                            <img src="img/cart.jpg" alt="">
+                                            <img height="100px" width="100px" src="<?php echo $row->Photo ?>" alt="">
                                         </div>
                                         <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
+                                            <p><?php echo $row->Name ?></p>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>$360.00</h5>
+                                    <h5>$<?php echo $row->Price ?></h5>
                                 </td>
                                 <td>
                                     <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1"
-                                            title="Quantity:" class="input-text qty">
-                                        <button
-                                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button"><i
+                                        <input type="text" name="quantity" id="quantity" maxlength="12" value="1"
+                                            title="Qty" class="input-text qty">
+                                        <button onclick="updatemPrice();" class=" increase items-count" type="button"><i
                                                 class="lnr lnr-chevron-up"></i></button>
-                                        <button
-                                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button"><i
+                                        <button onclick="updatePrice(); " class=" reduced items-count" type="button"><i
                                                 class="lnr lnr-chevron-down"></i></button>
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>$720.00</h5>
+                                    <h5>$<?php echo $row->Price ?></h5>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="img/cart.jpg" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$360.00</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1"
-                                            title="Quantity:" class="input-text qty">
-                                        <button
-                                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button"><i
-                                                class="lnr lnr-chevron-up"></i></button>
-                                        <button
-                                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button"><i
-                                                class="lnr lnr-chevron-down"></i></button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$720.00</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="img/cart.jpg" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$360.00</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1"
-                                            title="Quantity:" class="input-text qty">
-                                        <button
-                                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button"><i
-                                                class="lnr lnr-chevron-up"></i></button>
-                                        <button
-                                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button"><i
-                                                class="lnr lnr-chevron-down"></i></button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$720.00</h5>
-                                </td>
-                            </tr>
+                            <?php
+                        }
+                        ?>
+
                             <tr class="bottom_button">
                                 <td>
                                     <a class="gray_btn" href="#">Update Cart</a>

@@ -233,11 +233,10 @@ include 'functions/init.php';
                 <div class="row">
 
                     <?php
-$query = "SELECT * FROM sneakers ORDER BY SneakersId DESC LIMIT 10";
-$result = mysqli_query($conn, $query);
-while ($row = mysqli_fetch_object($result)) {
-
-    ?>
+                        $query = "SELECT * FROM sneakers ORDER BY SneakersId DESC LIMIT 10";
+                        $result = mysqli_query($conn, $query);
+                        while ($row = mysqli_fetch_object($result)) {
+                    ?>
                     <!-- Last single product -->
                     <div class="col-lg-3 col-md-6">
                         <div class="single-product">
@@ -253,11 +252,13 @@ while ($row = mysqli_fetch_object($result)) {
                                 </div>
                                 <div class="prd-bottom">
 
-                                    <a href="" class="social-info">
+                                    <a href="addtocard.php?SneakersId=<?php echo $row->SneakersId ?>"
+                                        class="social-info">
                                         <span class="ti-bag"></span>
                                         <p class="hover-text">add to bag</p>
                                     </a>
-                                    <a href="" class="social-info">
+                                    <a href="addtocard.php?SneakersId=<?php echo $row->SneakersId ?>"
+                                        class="social-info">
                                         <span class="lnr lnr-heart"></span>
                                         <p class="hover-text">Wishlist</p>
                                     </a>
@@ -267,8 +268,9 @@ while ($row = mysqli_fetch_object($result)) {
                         </div>
                     </div>
                     <?php
-}
-?>
+                    }
+                
+                    ?>
                 </div>
             </div>
         </div>
