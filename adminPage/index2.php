@@ -1,3 +1,7 @@
+<?php
+include('../functions/init.php')
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +19,43 @@
     <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load('current', {
+        'packages': ['geochart'],
+    });
+    google.charts.setOnLoadCallback(drawRegionsMap);
+
+    function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+            ['Country', 'Buy'],
+            <?php 
+                $query = "SELECT DISTINCT Country FROM informations ";
+                $result = mysqli_query($conn, $query);
+               
+                while ($row = mysqli_fetch_object($result)) {
+                    $query1 =" SELECT Country
+                    FROM informations
+                    WHERE Country='$row->Country'"; ?>
+
+            <?php 
+                     $result1 = mysqli_query($conn, $query1);
+                     $br=mysqli_num_rows($result1);
+            ?>['<?php echo $row->Country; ?>', <?php echo $br; ?>],
+
+            <?php 
+            }
+            ?>
+        ]);
+
+        var options = {};
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(data, options);
+    }
+    </script>
 </head>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -207,9 +248,9 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+                    with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
-                            <a href="./index2.html" class="nav-link active">
+                            <a href="./index2.php" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Dashboard </p>
                             </a>
@@ -226,39 +267,14 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="pages/charts/chartjs.php" class="nav-link">
                                 <i class="nav-icon fas fa-chart-pie"></i>
                                 <p>
                                     Charts
-                                    <i class="right fas fa-angle-left"></i>
+
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="pages/charts/chartjs.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>ChartJS</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/charts/flot.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Flot</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/charts/inline.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Inline</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/charts/uplot.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>uPlot</p>
-                                    </a>
-                                </li>
-                            </ul>
+
                         </li>
                         <li class="nav-item">
 
@@ -318,7 +334,7 @@
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
                                     Forms
-                                    <i class="fas fa-angle-left right"></i>
+
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
@@ -399,47 +415,22 @@
                             <a href="pages/kanban.html" class="nav-link">
                                 <i class="nav-icon fas fa-columns"></i>
                                 <p>
-                                    Kanban Board
+                                    Order Manager
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-envelope"></i>
+                            <a href="pages/mailbox/mailbox.php" class="nav-link">
+
                                 <p>
                                     Mailbox
-                                    <i class="fas fa-angle-left right"></i>
+
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="pages/mailbox/mailbox.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Inbox</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/mailbox/compose.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Compose</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/mailbox/read-mail.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Read</p>
-                                    </a>
-                                </li>
-                            </ul>
+
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Pages
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
+
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="pages/examples/invoice.html" class="nav-link">
@@ -516,8 +507,15 @@
                                         class="fas fa-thumbs-up"></i></span>
 
                                 <div class="info-box-content">
-                                    <span class="info-box-text">Likes</span>
-                                    <span class="info-box-number">41,410</span>
+                                    <?php 
+                                    $query = "select * from temporder";
+                                 
+                                    $result = mysqli_query($conn, $query);
+                                    
+                                    $nr=mysqli_num_rows($result);
+                                    ?>
+                                    <span class="info-box-text">Card Items</span>
+                                    <span class="info-box-number"><?php echo $nr; ?></span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -547,8 +545,15 @@
                                 <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
                                 <div class="info-box-content">
-                                    <span class="info-box-text">New Members</span>
-                                    <span class="info-box-number">2,000</span>
+                                    <?php 
+                                    $query = "select ID from users";
+                                 
+                                    $result = mysqli_query($conn, $query);
+                                    
+                                    $nr=mysqli_num_rows($result);
+                                    ?>
+                                    <span class="info-box-text">Members</span>
+                                    <span class="info-box-number"><?php echo $nr; ?></span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -718,36 +723,7 @@
                                     </div>
                                 </div>
                                 <!-- /.card-header -->
-                                <div class="card-body p-0">
-                                    <div class="d-md-flex">
-                                        <div class="p-1 flex-fill" style="overflow: hidden">
-                                            <!-- Map will be created here -->
-                                            <div id="world-map-markers" style="height: 325px; overflow: hidden">
-                                                <div class="map"></div>
-                                            </div>
-                                        </div>
-                                        <div class="card-pane-right bg-success pt-2 pb-2 pl-4 pr-4">
-                                            <div class="description-block mb-4">
-                                                <div class="sparkbar pad" data-color="#fff">90,70,90,70,75,80,70</div>
-                                                <h5 class="description-header">8390</h5>
-                                                <span class="description-text">Visits</span>
-                                            </div>
-                                            <!-- /.description-block -->
-                                            <div class="description-block mb-4">
-                                                <div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
-                                                <h5 class="description-header">30%</h5>
-                                                <span class="description-text">Referrals</span>
-                                            </div>
-                                            <!-- /.description-block -->
-                                            <div class="description-block">
-                                                <div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
-                                                <h5 class="description-header">70%</h5>
-                                                <span class="description-text">Organic</span>
-                                            </div>
-                                            <!-- /.description-block -->
-                                        </div><!-- /.card-pane-right -->
-                                    </div><!-- /.d-md-flex -->
-                                </div>
+                                <div id="regions_div" style="width: 648px; height: 500px;"></div>
                                 <!-- /.card-body -->
                             </div>
                             <!-- /.card -->

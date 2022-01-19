@@ -31,41 +31,6 @@ include "functions/init.php";
     <link rel="stylesheet" href="css/nouislider.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
-    <script type="text/javascript">
-    <?php
-    $productid=$_GET['productid'];
-    $query="select * from products where productid=$productid";
-    $result=mysqli_query($conn,$query);
-
-    $row=mysqli_fetch_object($result);
-    ?>
-
-    function updatePrice() {
-        qty = document.getElementById("quantity")
-        price = <?php echo $row->price."\n"; ?>
-        maxp = <?php echo $row->quantity."\n"; ?>
-        if (parseInt(qty.value) < maxp) {
-            sum = (parseInt(qty.value) + 1) * price
-            total = document.getElementById("total");
-            total.innerHTML = "Total " + sum + " Euro"
-        } else {
-            alert("No such quantity in stocks");
-            qty.value = maxp - 1
-        }
-    }
-
-    function updatemPrice() {
-        qty = document.getElementById("quantity")
-        price = <?php echo $row->price."\n"; ?>
-
-        if (parseInt(qty.value) > 1) {
-            sum = (parseInt(qty.value) - 1) * price
-        }
-
-        total = document.getElementById("total");
-        total.innerHTML = "Total " + sum + " Euro"
-    }
-    </script>
 </head>
 
 <body>
@@ -101,6 +66,7 @@ include 'Header\Footer/header.php';
                                 <th scope="col">Price</th>
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Total</th>
+                                <th scope="col">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -127,17 +93,39 @@ include 'Header\Footer/header.php';
                                     <h5>$<?php echo $row->Price ?></h5>
                                 </td>
                                 <td>
-                                    <div class="product_count">
-                                        <input type="text" name="quantity" id="quantity" maxlength="12" value="1"
-                                            title="Qty" class="input-text qty">
-                                        <button onclick="updatemPrice();" class=" increase items-count" type="button"><i
-                                                class="lnr lnr-chevron-up"></i></button>
-                                        <button onclick="updatePrice(); " class=" reduced items-count" type="button"><i
-                                                class="lnr lnr-chevron-down"></i></button>
-                                    </div>
+                                    <form method="POST">
+                                        <div class="product_count">
+
+                                            <input type="submit" value="+"
+                                                onclick="var result = document.getElementById('<?php echo $row->tid; ?>'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                                class="increase items-count">
+                                            <input type="text" name="bid" id="<?php echo $row->tid; ?>" maxlength="12"
+                                                value="1" title="Quantity:" class="input-text qty">
+                                            <input type="submit" value="-"
+                                                onclick="var result = document.getElementById('<?php echo $row->tid; ?>'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                                class="reduced items-count">
+                                            <input type="submit" name="deletebtn" class="button"
+                                                value="Delete single user data" />
+                                        </div>
+                                    </form>
+                                    <?php
+                                    echo $_POST['bid']; 
+                                    
+                                     if (isset($_POST['echo $row->tid']))
+                                     {
+                                        echo $_POST['$row->tid']; 
+                                     }
+                                     else
+                                     {
+                                        echo "error";
+                                     }
+                                    ?>
                                 </td>
                                 <td>
                                     <h5>$<?php echo $row->Price ?></h5>
+                                </td>
+                                <td>
+                                    <h5><?php echo'Delete' ?></h5>
                                 </td>
                             </tr>
                             <?php

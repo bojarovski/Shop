@@ -67,16 +67,28 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <?php 
+
+                        if(isset($_SESSION['user'])){
+                        
 						$user=$_SESSION['user'];
 						$query="select * from temporder where username='$user'";
 						$result=mysqli_query($conn,$query);
 						$bp=mysqli_num_rows($result);
-						
+                        
+                      
 						?>
                         <li class="nav-item"><a href="cart.php" class="fa badge fa-lg" value=<?php echo $bp; ?>><span
                                     class="ti-bag">&#xf290;</span></a>
                         </li>
-
+                        <?php 
+                        }
+                         else{
+                        ?>
+                        <li class="nav-item"><a href="login.php" class="fa badge fa-lg"><span
+                                    class="ti-bag">&#xf290;</span></a>
+                            <?php
+                         }
+                        ?>
 
                         <li class="nav-item">
                             <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
