@@ -57,10 +57,14 @@ include 'functions/init.php';
                         <div class="row single-slide align-items-center d-flex">
                             <div class="col-lg-5 col-md-6">
                                 <div class="banner-content">
-                                    <h1><?php echo $row->Name;  ?> New <br>Collection!</h1>
+                                    <h1><a class="text-dark"
+                                            href="single-product.php?SneakersId=<?php echo $row->SneakersId ?>"><?php echo
+                                            $row->Name; ?> New <br>Collection!</a></h1>
                                     <p><?php echo $row->Description;  ?></p>
                                     <div class="add-bag d-flex align-items-center">
-                                        <a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>
+                                        <a class="add-btn"
+                                            href="addtocard.php?SneakersId=<?php echo $row->SneakersId ?>"><span
+                                                class="lnr lnr-cross"></span></a>
                                         <span class="add-text text-uppercase">Add to Bag</span>
                                     </div>
                                 </div>

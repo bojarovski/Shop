@@ -80,14 +80,27 @@ include 'Header\Footer/header.php';
                     <div class="s_product_text">
                         <h3><?php echo $row->Name; ?></h3>
                         <h2><?php echo $row->Price; ?>$</h2>
-                        <?php 
-                        $query1 = "select Name from category where SneakersId=$SneakersId";
+                        <?php
+                            
+                        $query1 = "SELECT *
+                        FROM category
+                        INNER JOIN sneakers ON category.CategoryId=sneakers.CategoryId WHERE sneakers.SneakersId='$SneakersId';";
+                        
                         $result1 = mysqli_query($conn, $query1);
-                        $row1 = mysqli_fetch_object($result1); 
-                           
+                     $row1 = mysqli_fetch_object($result1);
+
+                     $query2 = "SELECT *
+                     FROM brand
+                     INNER JOIN sneakers ON brand.brandId=sneakers.BrandId WHERE sneakers.SneakersId=$SneakersId;";
+                     
+                     $result2 = mysqli_query($conn, $query2);
+                  $row2 = mysqli_fetch_object($result2)
                         ?>
                         <ul class="list">
-                            <li><a class="active" href="#"><span>Category</span><?php echo $row1->Name; ?></a></li>
+                            <li><a class="active" href="#"><span>Category</span><?php echo $row1->categoryName; ?></a>
+                            </li>
+                            <li><a class="active" href="#"><span>Brand</span><?php echo $row2->brandName; ?></a>
+                            </li>
                             <li><a
                                     href="#"><span>Availibility</span><?php if($row->Quantity > 0) echo "In Stock"; else echo "Not Available" ?></a>
                             </li>
@@ -106,7 +119,8 @@ include 'Header\Footer/header.php';
                         </div>
                         <div class="card_area d-flex align-items-center">
                             <?php if($row->Quantity > 0) { ?>
-                            <a class="primary-btn" href="#">Add to Cart</a>
+                            <a class="primary-btn" href="addtocard.php?SneakersId=<?php echo $row->SneakersId ?>">Add to
+                                Cart</a>
                             <?php }else {?>
                             <a class="primary" href="#">Not Available</a>
                             <?php }?>

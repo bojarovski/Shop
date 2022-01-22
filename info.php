@@ -384,7 +384,7 @@ include 'functions/init.php';
                         </form>
                         <?php
                         }else{
-?>
+                        ?>
                         <form class="row contact_form" action="actinfo.php" method="post" novalidate="novalidate">
                             <div class="col-md-12 form-group" hidden>
                                 <input type="text" class="form-control" id="company" name="ID" value="" />

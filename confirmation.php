@@ -33,7 +33,7 @@
 <body>
     <!-- Start Header Area -->
     <?php
-include 'Header\Footer/footer.php';
+include 'Header\Footer/header.php';
 ?>
     <!-- End Header Area -->
 
@@ -62,9 +62,9 @@ include 'Header\Footer/footer.php';
     <!--================Order Details Area =================-->
     <section class="order_details section_gap">
         <div class="container">
-            <h3 class="title_confirmation">
+            <h2 class="title_confirmation">
                 Thank you. Your order has been received.
-            </h3>
+            </h2>
             <div class="row order_d_inner">
                 <div class="col-lg-4">
                     <div class="details_item">

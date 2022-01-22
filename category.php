@@ -62,7 +62,8 @@ include('functions/init.php');
                     <div class="head">Browse Categories</div>
 
                     <?php
-					      $query="SELECT Name FROM category";
+					      $query="SELECT categoryName FROM category";
+                         
                 	$result=mysqli_query($conn,$query);
                 	while($row=mysqli_fetch_object($result)){
 				        ?>
@@ -70,8 +71,8 @@ include('functions/init.php');
                     <ul class="main-categories">
                         <li class="main-nav-list">
                             <a data-toggle="collapse" aria-expanded="false" aria-controls="fruitsVegetable"
-                                href="category.php?categoryName=<?php echo $row->Name; ?>"><span
-                                    class="lnr lnr-arrow-right"></span><?php echo $row->Name?><span
+                                href="category.php?categoryName=<?php echo $row->categoryName; ?>"><span
+                                    class="lnr lnr-arrow-right"></span><?php echo $row->categoryName?><span
                                     class="number"><?php   ?></span></a>
                             <!-- <ul
                   class="collapse"
@@ -128,9 +129,10 @@ include('functions/init.php');
 				          ?>
 
                                 <li class="filter-list">
-                                    <input class="pixel-radio" type="checkbox" id="<?php echo $row->Name; ?>"
-                                        name="brand" /><a href="category.php?brandName=<?php echo $row->Name; ?>"
-                                        for="apple"><?php echo $row->Name ?><span>(<?php echo $row1 ;?>)</span></a>
+                                    <input class="pixel-radio" type="checkbox" id="<?php echo $row->brandName; ?>"
+                                        name="brand" /><a class="text-dark"
+                                        href="category.php?brandName=<?php echo $row->brandName; ?>"
+                                        for="apple"><?php echo $row->brandName ?><span>(<?php echo $row1 ;?>)</span></a>
                                 </li>
                                 <?php
 					        }
@@ -229,7 +231,7 @@ include('functions/init.php');
                                             href="single-product.php?SneakersId=<?php echo $row->SneakersId ?>"><?php echo $row->Name; ?></a>
                                     </h6>
                                     <div class="price">
-                                        <h6><?php echo $row->Price; ?>.$</h6>
+                                        <h6><?php echo $row->Price; ?>$</h6>
 
                                     </div>
                                     <div class="prd-bottom">
