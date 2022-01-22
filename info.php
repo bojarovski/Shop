@@ -74,7 +74,7 @@ include 'functions/init.php';
                         
                         $result=mysqli_query($conn, $query);
                         $row = mysqli_fetch_object($result);
-                        if(mysqli_num_rows($result)>1){
+                        if(mysqli_num_rows($result)>0){
                             ?>
                         <form class="row contact_form" action="updateinfo.php" method="post" novalidate="novalidate">
                             <div class="col-md-12 form-group" hidden>

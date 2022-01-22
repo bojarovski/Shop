@@ -79,10 +79,18 @@ include 'Header\Footer/header.php';
                 <div class="col-lg-5 offset-lg-1">
                     <div class="s_product_text">
                         <h3><?php echo $row->Name; ?></h3>
-                        <h2><?php echo $row->Price; ?></h2>
+                        <h2><?php echo $row->Price; ?>$</h2>
+                        <?php 
+                        $query1 = "select Name from category where SneakersId=$SneakersId";
+                        $result1 = mysqli_query($conn, $query1);
+                        $row1 = mysqli_fetch_object($result1); 
+                           
+                        ?>
                         <ul class="list">
-                            <li><a class="active" href="#"><span>Category</span> : Household</a></li>
-                            <li><a href="#"><span>Availibility</span> : In Stock</a></li>
+                            <li><a class="active" href="#"><span>Category</span><?php echo $row1->Name; ?></a></li>
+                            <li><a
+                                    href="#"><span>Availibility</span><?php if($row->Quantity > 0) echo "In Stock"; else echo "Not Available" ?></a>
+                            </li>
                         </ul>
                         <p><?php echo $row->Description; ?></p>
                         <div class="product_count">
@@ -97,8 +105,11 @@ include 'Header\Footer/header.php';
                                 class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
                         </div>
                         <div class="card_area d-flex align-items-center">
+                            <?php if($row->Quantity > 0) { ?>
                             <a class="primary-btn" href="#">Add to Cart</a>
-
+                            <?php }else {?>
+                            <a class="primary" href="#">Not Available</a>
+                            <?php }?>
                         </div>
                     </div>
                 </div>

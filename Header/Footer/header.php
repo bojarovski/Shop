@@ -32,26 +32,22 @@
                     <ul class="nav navbar-nav menu_nav ml-auto">
                         <li class="nav-item"><a class="nav-link nav-item active " href="index.php">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="category.php">Shop Category</a></li>
-                        <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                aria-haspopup="true" aria-expanded="false">Pages</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="tracking.php">Tracking</a></li>
-                                <li class="nav-item"><a class="nav-link" href="elements.php">Elements</a></li>
-                            </ul>
-                        </li>
+
                         <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
                         <?php
 							if(!isset($_SESSION['user'])){
+                                echo '<li class="nav-item"><a class="nav-link" href="tracking.php">Tracking</a></li>';
 								echo'<li class="nav-item"><a class="nav-link" href="login.php">LOGIN</a></li>';
+                               
 							}else{?>
                         <li class="nav-item submenu dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                 aria-haspopup="true" aria-expanded="false">Profile</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a class="nav-link" href="info.php">My Profile</a>
-                                </li>
-                                <?php
+                                <li class="nav-item"><a class="nav-link" href="tracking.php">Tracking</a></li>
+                        </li>
+                        <?php
 								if($_SESSION['user']=='admin'){
 								echo'<li class="nav-item"><a class="nav-link" href="adminPage/index2.php">Admin
 								Page</a>';
