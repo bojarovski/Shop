@@ -44,6 +44,6 @@ mysqli_query($conn, $query4);
 <div class="alert alert-danger" role="alert">Succesfully
 </div>
 <?php
- header("refresh:5; location: confirmation.php");
+ header(" location: confirmation.php");
                        } 
                     
