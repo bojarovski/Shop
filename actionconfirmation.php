@@ -37,13 +37,14 @@ include("functions/init.php");
                             $query4="UPDATE orders
                             SET orderinfoId = $idi
                             WHERE username='$user';";
-mysqli_query($conn, $query4);
+                            mysqli_query($conn, $query4);
+                            
                             $query3="DELETE FROM temporder WHERE username='$user'";           
                             mysqli_query($conn, $query3);
                             ?>
 <div class="alert alert-danger" role="alert">Succesfully
 </div>
 <?php
- header(" location: confirmation.php");
+ header("location: confirmation.php");
                        } 
                     
