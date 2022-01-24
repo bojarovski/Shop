@@ -56,7 +56,10 @@ include 'functions/init.php';
                     ?>
                         <div class="row single-slide align-items-center d-flex">
                             <div class="col-lg-5 col-md-6">
-                                <div class="banner-content">
+                                <div class="banner-content"><br>
+                                    <br>
+                                    <br>
+                                    <br>
                                     <h1><a class="text-dark"
                                             href="single-product.php?SneakersId=<?php echo $row->SneakersId ?>"><?php echo
                                             $row->Name; ?> New <br>Collection!</a></h1>
@@ -71,7 +74,8 @@ include 'functions/init.php';
                             </div>
                             <div class="col-lg-7">
                                 <div class="banner-img">
-                                    <img class="img-fluid" src="<?php echo $row->Photo;  ?>" alt="">
+                                    <img class="img-fluid" width="555" height="600" src="<?php echo $row->Photo;  ?>"
+                                        alt="">
                                 </div>
                             </div>
                         </div>
@@ -79,6 +83,10 @@ include 'functions/init.php';
                         <div class="row single-slide">
                             <div class="col-lg-5">
                                 <div class="banner-content">
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
                                     <h1>Nike New <br>Collection!</h1>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                         incididunt ut labore et

@@ -36,11 +36,18 @@ include("functions/init.php");
                             
                             $query4="UPDATE orders
                             SET orderinfoId = $idi
-                            WHERE username='$user';";
+                            WHERE username='$user'";
+                            $query5="INSERT INTO finalorder (orderinfoId,username, snakersId, date,status)
+                            SELECT orderinfoId, username, SneakersId, date, status
+                            FROM orders
+                            WHERE username='$user';
+                            ";
                             mysqli_query($conn, $query4);
-                            
-                            $query3="DELETE FROM temporder WHERE username='$user'";           
+                            mysqli_query($conn, $query5);
+                            $query3="DELETE FROM temporder WHERE username='$user'";
+                            $query6="DELETE FROM orders WHERE username='$user'";           
                             mysqli_query($conn, $query3);
+                            mysqli_query($conn, $query6);
                             ?>
 <div class="alert alert-danger" role="alert">Succesfully
 </div>
