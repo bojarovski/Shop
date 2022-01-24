@@ -94,7 +94,7 @@ include 'Header\Footer/header.php';
                                 </td>
                                 <td>
                                     <form method="POST">
-                                        <div class="product_count">
+                                        <!-- <div class="product_count">
 
                                             <input type="submit" value="+"
                                                 onclick="var result = document.getElementById('<?php echo $row->tid; ?>'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
@@ -106,26 +106,27 @@ include 'Header\Footer/header.php';
                                                 class="reduced items-count">
                                             <input type="submit" name="deletebtn" class="button"
                                                 value="Delete single user data" />
-                                        </div>
+                                        </div> -->
                                     </form>
                                     <?php
-                                    echo $_POST['bid']; 
+                                    // echo $_POST['bid']; 
                                     
-                                     if (isset($_POST['echo $row->tid']))
-                                     {
-                                        echo $_POST['$row->tid']; 
-                                     }
-                                     else
-                                     {
-                                        echo "error";
-                                     }
+                                    //  if (isset($_POST['echo $row->tid']))
+                                    //  {
+                                    //     echo $_POST['$row->tid']; 
+                                    //  }
+                                    //  else
+                                    //  {
+                                    //     echo "error";
+                                    //  }
                                     ?>
                                 </td>
                                 <td>
                                     <h5>$<?php echo $row->Price ?></h5>
                                 </td>
                                 <td>
-                                    <h5><?php echo'Delete' ?></h5>
+                                    <a href="delete.php?id=<?php echo $row->tid ?>"
+                                        class="btn btn-danger text-white"><?php echo'Delete' ?></a>
                                 </td>
                             </tr>
                             <?php

@@ -1010,12 +1010,7 @@ include('../../../functions/init.php')
                         <!-- /.card -->
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <a href="#" class="btn btn-secondary">Cancel</a>
-                        <input type="submit" value="Create new Project" class="btn btn-success float-right">
-                    </div>
-                </div>
+
             </section>
             <!-- /.content -->
         </div>

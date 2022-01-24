@@ -363,26 +363,6 @@ include('../functions/init.php')
                                     <span class="badge badge-info right"></span>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="pages/examples/add.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Add Sneakers </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/examples/addC.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Add Category</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/examples/addB.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Add Brand</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
 
                         <li class="nav-item">
