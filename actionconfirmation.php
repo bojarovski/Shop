@@ -1,5 +1,6 @@
 <?php
 include("functions/init.php");
+
                         
                         $firstName = $_POST['firstName'];
                         $ID=$_POST['ID'];
@@ -13,11 +14,15 @@ include("functions/init.php");
                         $zip=$_POST['zip'];
                         $user=$_SESSION['user'];
                         $mess=$_POST['message'];
-                        echo $ID;
+                        $fullprice=$_SESSION["fullprice"];
+                             
+          
+                        
                         if ($firstName >3 && $lastName >3 && $phone>5 && $ad1>5 && $city>3) {
-                            $query="INSERT INTO `ordersinfo`(ordersinfoId,`informationId`, `UserId`, `FirstName`, `LastName`, `Country`, `Addres1`, `Addres2`, `City`, `Phone`, `Zip`,`email`,`message`)
-                             VALUES (Null,'$ID','$user','$firstName','$lastName','$country','$ad1','$ad2','$city','$phone','$zip','$email','$mess')";
+                            $query="INSERT INTO `ordersinfo`(ordersinfoId,`informationId`, `UserId`, `FirstName`, `LastName`, `Country`, `Addres1`, `Addres2`, `City`, `Phone`, `Zip`,`email`,`message`,`price`)
+                             VALUES (Null,'$ID','$user','$firstName','$lastName','$country','$ad1','$ad2','$city','$phone','$zip','$email','$mess','$fullprice')";
                             mysqli_query($conn, $query);
+
                         
                             $query1="INSERT INTO orders (username, SneakersId, date)
                             SELECT username, sneakerid, date

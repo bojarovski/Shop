@@ -1,3 +1,6 @@
+<?php
+include("functions/init.php");
+?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -65,19 +68,28 @@ include 'Header\Footer/header.php';
             <h2 class="title_confirmation">
                 Thank you. Your order has been received.
             </h2>
+
+            <?php
+                $user=$_SESSION['user'];
+                $fullprice=$_SESSION['fullprice'];
+                        $query = "SELECT * FROM finalorder where username='$user' ORDER BY finalOrderID DESC LIMIT 1";
+                        $result = mysqli_query($conn, $query);
+                        $row = mysqli_fetch_object($result)
+                    ?>
+
             <div class="row order_d_inner">
                 <div class="col-lg-4">
                     <div class="details_item">
                         <h4>Order Info</h4>
                         <ul class="list">
                             <li>
-                                <a href="#"><span>Order number</span> : 60235</a>
+                                <a href="#"><span>Order number</span> : <?php echo $row->finalOrderID   ; ?></a>
                             </li>
                             <li>
-                                <a href="#"><span>Date</span> : Los Angeles</a>
+                                <a href="#"><span>Date</span> : <?php echo $row->date   ; ?></a>
                             </li>
                             <li>
-                                <a href="#"><span>Total</span> : USD 2210</a>
+                                <a href="#"><span>Total</span> : <?php echo $fullprice  ?> $</a>
                             </li>
                             <li>
                                 <a href="#"><span>Payment method</span> : Check payments</a>
@@ -89,17 +101,23 @@ include 'Header\Footer/header.php';
                     <div class="details_item">
                         <h4>Billing Address</h4>
                         <ul class="list">
+                            <?php
+                
+                        $query = "SELECT * FROM informations where UserId='$user'";
+                        $result = mysqli_query($conn, $query);
+                        $row = mysqli_fetch_object($result)
+                    ?>
                             <li>
-                                <a href="#"><span>Street</span> : 56/8</a>
+                                <a href="#"><span>Street</span> : <?php echo $row->Addres1   ; ?></a>
                             </li>
                             <li>
-                                <a href="#"><span>City</span> : Los Angeles</a>
+                                <a href="#"><span>City</span> : <?php echo $row->City   ; ?></a>
                             </li>
                             <li>
-                                <a href="#"><span>Country</span> : United States</a>
+                                <a href="#"><span>Country</span> : <?php echo $row->Country   ; ?></a>
                             </li>
                             <li>
-                                <a href="#"><span>Postcode </span> : 36952</a>
+                                <a href="#"><span>Postcode </span> : <?php echo $row->Zip   ; ?></a>
                             </li>
                         </ul>
                     </div>
@@ -108,17 +126,26 @@ include 'Header\Footer/header.php';
                     <div class="details_item">
                         <h4>Shipping Address</h4>
                         <ul class="list">
+                            <?php
+                
+                $query = "SELECT * FROM ordersinfo where UserId='$user'";
+                $result = mysqli_query($conn, $query);
+                $row = mysqli_fetch_object($result)
+            ?>
                             <li>
-                                <a href="#"><span>Street</span> : 56/8</a>
+                                <a href="#"><span>Street</span> : <?php echo $row->Addres1   ; ?></a>
                             </li>
                             <li>
-                                <a href="#"><span>City</span> : Los Angeles</a>
+                                <a href="#"><span>City</span> : <?php echo $row->City   ; ?></a>
                             </li>
                             <li>
-                                <a href="#"><span>Country</span> : United States</a>
+                                <a href="#"><span>Country</span> : <?php echo $row->Country   ; ?></a>
                             </li>
                             <li>
-                                <a href="#"><span>Postcode </span> : 36952</a>
+                                <a href="#"><span>Postcode </span> : <?php echo $row->Zip   ; ?></a>
+                            </li>
+                            <li>
+                                <a href="#"><span>Message </span> : <?php echo $row->message   ; ?></a>
                             </li>
                         </ul>
                     </div>
@@ -136,70 +163,40 @@ include 'Header\Footer/header.php';
                             </tr>
                         </thead>
                         <tbody>
+
                             <tr>
+                                <?php
+                                $query10 = "SELECT *
+                                FROM finalorder
+                                INNER JOIN sneakers ON finalorder.snakersId=sneakers.SneakersId WHERE
+                                finalorder.username='$user';";
+                                $result10 = mysqli_query($conn, $query10);
+
+                                $total=0;
+                                while ($row = mysqli_fetch_object($result10)) {
+                                    ?>
                                 <td>
-                                    <p>Pixelstore fresh Blackberry</p>
+                                    <p><?php echo $row->Name?></p>
                                 </td>
                                 <td>
                                     <h5>x 02</h5>
                                 </td>
                                 <td>
-                                    <p>$720.00</p>
+                                    <p>$<?php echo $row->Price?></p>
                                 </td>
                             </tr>
+                            <?php
+                            }
+                            ?>
                             <tr>
                                 <td>
-                                    <p>Pixelstore fresh Blackberry</p>
-                                </td>
-                                <td>
-                                    <h5>x 02</h5>
-                                </td>
-                                <td>
-                                    <p>$720.00</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p>Pixelstore fresh Blackberry</p>
-                                </td>
-                                <td>
-                                    <h5>x 02</h5>
-                                </td>
-                                <td>
-                                    <p>$720.00</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h4>Subtotal</h4>
+                                    <h5>Total</h5>
                                 </td>
                                 <td>
                                     <h5></h5>
                                 </td>
                                 <td>
-                                    <p>$2160.00</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h4>Shipping</h4>
-                                </td>
-                                <td>
-                                    <h5></h5>
-                                </td>
-                                <td>
-                                    <p>Flat rate: $50.00</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h4>Total</h4>
-                                </td>
-                                <td>
-                                    <h5></h5>
-                                </td>
-                                <td>
-                                    <p>$2210.00</p>
+                                    <h5><b></b>$<?php echo $fullprice?></b></h5>
                                 </td>
                             </tr>
                         </tbody>

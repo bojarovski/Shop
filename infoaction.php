@@ -1,6 +1,7 @@
 <?php
 include "functions/init.php";
 
+
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
 $phone = $_POST['phone'];

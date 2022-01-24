@@ -248,6 +248,7 @@ include 'functions/init.php';
                 <div class="row">
 
                     <?php
+                    
                         $query = "SELECT * FROM sneakers ORDER BY SneakersId DESC LIMIT 10";
                         $result = mysqli_query($conn, $query);
                         while ($row = mysqli_fetch_object($result)) {

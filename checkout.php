@@ -1,5 +1,7 @@
 <?php 
 include('functions/init.php');
+
+
 ?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
@@ -397,6 +399,7 @@ include('functions/init.php');
                             <div class="col-md-12 form-group" hidden>
                                 <input type="text" class="form-control" id="company" name="ID" value="" />
                             </div>
+
                             <div class="col-md-6 form-group p_star">
 
                                 <input required type="text" class="form-control" id="first" name="firstName"
@@ -721,12 +724,13 @@ include('functions/init.php');
                                 </li>
                                 <?php
                             $user=$_SESSION['user'];
-                        $query = "SELECT *
-                        FROM temporder
-                        INNER JOIN sneakers ON temporder.sneakerid=sneakers.SneakersId WHERE temporder.username='$user';";
-                        $result = mysqli_query($conn, $query);
-                        $total=0;
-                        while ($row = mysqli_fetch_object($result)) {
+                            $query10 = "SELECT *
+                            FROM temporder
+                            INNER JOIN sneakers ON temporder.sneakerid=sneakers.SneakersId WHERE temporder.username='$user';";
+                            $result10 = mysqli_query($conn, $query10);
+                            
+                            $total=0;
+                        while ($row = mysqli_fetch_object($result10)) {
                         ?>
                                 <li>
                                     <a><?php echo $row->Name?><span class="middle">x 02</span>
@@ -746,8 +750,15 @@ include('functions/init.php');
                                     <a>Shipping <span>Flat rate: $<?php echo $ddv ?></span></a>
                                 </li>
                                 <li>
-                                    <a>Total <span>$<?php echo $ddv+$total ?></span></a>
+                                    <a>Total <span>$<?php  echo $ddv+$total?></span></a>
                                 </li>
+                                <?php
+                                $fullprice=$ddv+$total;
+                                $_SESSION['fullprice']="$fullprice";
+                                ?>
+                                <?php  $query="SELECT categoryName FROM category";
+                         
+                                        mysqli_query($conn,$query); ?>
                             </ul>
                             <div class="payment_item">
                                 <div class="radion_btn">
