@@ -26,4 +26,12 @@ class CalculatorTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals(59, $result);
     }
 
+    public function testDdv() {
+
+        $calculator = new App\Calculator;
+        $result = $calculator->ddv(50);
+
+        $this->assertEquals(9, $result);
+    }
+
 }

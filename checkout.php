@@ -1,6 +1,6 @@
 <?php 
 include('functions/init.php');
-
+include("app/Calculator.php");
 
 ?>
 <!DOCTYPE html>
@@ -746,20 +746,20 @@ include('functions/init.php');
                                     <a>Subtotal <span>$<?php echo $total?></span></a>
                                 </li>
                                 <li>
-                                    <?php $ddv=round($total/100*18,0) ?>
+                                    <?php $ddv=round($ddv1=$obj->ddv($total),0) ?>
                                     <a>Shipping <span>Flat rate: $<?php echo $ddv ?></span></a>
                                 </li>
                                 <li>
                                     <a>Total <span>$<?php  echo $ddv+$total?></span></a>
                                 </li>
                                 <?php
-                                include("app/Calculator.php");
+                                
                                
                                 
                                 
 
 
-                                $fullprice=$obj->calculate($total); //UNITTEST
+                                $fullprice=$obj->calculate($total);
                                 $_SESSION['fullprice']="$fullprice";
                                 ?>
                                 <?php  $query="SELECT categoryName FROM category";

@@ -23,6 +23,10 @@ class Calculator{
     public function calculate($total){
         return ($total/100*18)+$total;
     }
+
+    public function ddv($total){
+        return $total/100*18;
+    }
     	
 }
 $obj=new Calculator();
