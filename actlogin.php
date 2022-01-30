@@ -13,7 +13,7 @@
                         {
                             echo "Mario";
                         $row=mysqli_fetch_array($result);
-                        $_SESSION['user']=$row['username'];
+                        $_SESSION['user']=$row['username']; 
                         header("location: index.php");
                         }
                         else
