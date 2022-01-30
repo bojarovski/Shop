@@ -753,7 +753,13 @@ include('functions/init.php');
                                     <a>Total <span>$<?php  echo $ddv+$total?></span></a>
                                 </li>
                                 <?php
-                                $fullprice=$ddv+$total;
+                                include("app/Calculator.php");
+                               
+                                
+                                
+
+
+                                $fullprice=$obj->calculate($total); //UNITTEST
                                 $_SESSION['fullprice']="$fullprice";
                                 ?>
                                 <?php  $query="SELECT categoryName FROM category";

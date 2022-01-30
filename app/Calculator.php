@@ -20,8 +20,9 @@ class Calculator{
         return $num1 / $num2;
     }
    
-        public function calculate($total){
+    public function calculate($total){
         return ($total/100*18)+$total;
-        }
+    }
     	
 }
+$obj=new Calculator();
